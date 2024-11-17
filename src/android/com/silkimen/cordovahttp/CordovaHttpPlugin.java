@@ -103,8 +103,8 @@ public class CordovaHttpPlugin extends CordovaPlugin implements Observer {
       return this.executeHttpRequestWithData(action, args, callbackContext);
     } else if ("uploadFiles".equals(action)) {
       return this.uploadFiles(args, callbackContext);
-    } else if ("downloadFile".equals(action)) {
-      return this.downloadFile(args, callbackContext);
+    // } else if ("downloadFile".equals(action)) {
+    //   return this.downloadFile(args, callbackContext);
     } else {
       return false;
     }
@@ -175,24 +175,24 @@ public class CordovaHttpPlugin extends CordovaPlugin implements Observer {
     return true;
   }
 
-  private boolean downloadFile(final JSONArray args, final CallbackContext callbackContext) throws JSONException {
-    String url = args.getString(0);
-    JSONObject headers = args.getJSONObject(1);
-    String filePath = args.getString(2);
-    int connectTimeout = args.getInt(3) * 1000;
-    int readTimeout = args.getInt(4) * 1000;
-    boolean followRedirect = args.getBoolean(5);
-    Integer reqId = args.getInt(6);
+  // private boolean downloadFile(final JSONArray args, final CallbackContext callbackContext) throws JSONException {
+  //   String url = args.getString(0);
+  //   JSONObject headers = args.getJSONObject(1);
+  //   String filePath = args.getString(2);
+  //   int connectTimeout = args.getInt(3) * 1000;
+  //   int readTimeout = args.getInt(4) * 1000;
+  //   boolean followRedirect = args.getBoolean(5);
+  //   Integer reqId = args.getInt(6);
 
-    CordovaObservableCallbackContext observableCallbackContext = new CordovaObservableCallbackContext(callbackContext, reqId);
+  //   CordovaObservableCallbackContext observableCallbackContext = new CordovaObservableCallbackContext(callbackContext, reqId);
 
-    CordovaHttpDownload download = new CordovaHttpDownload(url, headers, filePath, connectTimeout, readTimeout,
-        followRedirect, this.tlsConfiguration, observableCallbackContext);
+  //   CordovaHttpDownload download = new CordovaHttpDownload(url, headers, filePath, connectTimeout, readTimeout,
+  //       followRedirect, this.tlsConfiguration, observableCallbackContext);
 
-    startRequest(reqId, observableCallbackContext, download);
+  //   startRequest(reqId, observableCallbackContext, download);
 
-    return true;
-  }
+  //   return true;
+  // }
 
   private void startRequest(Integer reqId, CordovaObservableCallbackContext observableCallbackContext, CordovaHttpBase request) {
     synchronized (reqMapLock) {
